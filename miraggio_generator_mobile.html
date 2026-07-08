@@ -35,9 +35,13 @@
             padding-bottom: 10px;
         }
         .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
+            display: flex;
+            flex-wrap: wrap;
             gap: 15px;
+        }
+        .form-grid > .form-group {
+            flex: 1 1 220px;
+            min-width: 0;
         }
         .form-group {
             display: flex;
@@ -59,7 +63,7 @@
             font-family: inherit;
         }
         .btn-print {
-            grid-column: span 3;
+            flex: 1 1 100%;
             background-color: #0b2c52;
             color: white;
             padding: 12px;
@@ -76,7 +80,7 @@
             background-color: #113f75;
         }
         .rooms-section {
-            grid-column: span 3;
+            flex: 1 1 100%;
         }
         .rooms-section > label {
             font-size: 11px;
@@ -88,8 +92,8 @@
             display: block;
         }
         .room-line {
-            display: grid;
-            grid-template-columns: 1.8fr 0.6fr 1fr 1fr 1fr auto;
+            display: flex;
+            flex-wrap: wrap;
             gap: 8px;
             align-items: end;
             padding: 12px;
@@ -102,6 +106,19 @@
         }
         .room-line .form-group {
             min-width: 0;
+        }
+        .room-line .form-group:nth-child(1) {
+            flex: 2 1 220px; /* room type - biggest field */
+        }
+        .room-line .form-group:nth-child(2) {
+            flex: 1 1 70px; /* qty */
+        }
+        .room-line .form-group:nth-child(3) {
+            flex: 1 1 140px; /* guests */
+        }
+        .room-line .form-group:nth-child(4),
+        .room-line .form-group:nth-child(5) {
+            flex: 1 1 120px; /* rates */
         }
         .room-line .form-group input,
         .room-line .form-group select {
@@ -416,8 +433,11 @@
             background-color: white;
         }
         
-        /* --- PRINT MEDIA RULES --- */
         /* --- MOBILE / PHONE LAYOUT --- */
+        /* Note: .form-grid and .room-line no longer need breakpoint-specific
+           overrides here -- they use flex-wrap with per-field basis sizes
+           (see their base rules above), so they reflow automatically at
+           any width without depending on a specific pixel breakpoint. */
         @media screen and (max-width: 700px) {
             body {
                 padding: 10px;
@@ -426,30 +446,17 @@
                 padding: 14px;
                 border-radius: 6px;
             }
-            .form-grid {
-                grid-template-columns: 1fr;
-                gap: 12px;
-            }
             .form-group input,
             .form-group select,
             .form-group textarea {
                 font-size: 16px; /* prevents iOS Safari auto-zoom on focus */
                 padding: 12px;
             }
-            .room-line {
-                grid-template-columns: 1fr 1fr;
-                gap: 10px;
-            }
-            .room-line .form-group:first-child {
-                grid-column: 1 / -1; /* room type select gets full width */
-            }
             .btn-remove-room {
-                grid-column: 1 / -1;
                 width: 100%;
                 height: 40px;
             }
             .btn-print {
-                grid-column: 1;
                 padding: 16px;
                 font-size: 15px;
             }
