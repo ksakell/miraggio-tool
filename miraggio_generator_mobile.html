@@ -502,6 +502,69 @@
                 margin: 1.5cm;
             }
 
+            /* General print tightening: applies to every reservation,
+               regardless of room count. The on-screen spacing is generous
+               for readability, but printed pages benefit from tighter
+               margins since it directly reduces awkward page-break gaps
+               (a room-block that doesn't quite fit jumps whole to the next
+               page rather than splitting -- making each block smaller means
+               that happens less often, and the leftover blank space is
+               smaller when it does). */
+            .panoramic-wrapper {
+                height: 160px !important;
+                margin-bottom: 20px !important;
+            }
+            .congrats-box {
+                margin: 18px 0 !important;
+            }
+            .intro-text {
+                margin-bottom: 10px !important;
+                font-size: 12.5px !important;
+            }
+            .offer-prefix {
+                margin-top: 14px !important;
+                margin-bottom: 4px !important;
+            }
+            .club-subtitle {
+                margin-bottom: 8px !important;
+            }
+            .room-description {
+                margin-bottom: 12px !important;
+                line-height: 1.45 !important;
+            }
+            .room-images-grid {
+                margin: 12px 0 !important;
+                gap: 8px !important;
+            }
+            .room-img-box {
+                height: 85px !important;
+            }
+            .benefits-box {
+                padding: 15px 18px !important;
+                margin-top: 15px !important;
+            }
+            .benefits-box h4 {
+                margin-bottom: 8px !important;
+            }
+            .benefits-list {
+                line-height: 1.4 !important;
+            }
+            .benefits-list li {
+                margin-bottom: 2px !important;
+            }
+            .details-section {
+                margin-top: 15px !important;
+                padding-top: 12px !important;
+            }
+            .app-promo-container {
+                padding: 12px !important;
+                margin-top: 15px !important;
+            }
+            .room-block + .room-block {
+                padding-top: 15px !important;
+                margin-top: 5px !important;
+            }
+
             /* Compact mode: applied automatically by JS when the
                reservation has a single room type, since that's the
                large majority of cases and should comfortably fit
