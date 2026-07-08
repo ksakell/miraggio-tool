@@ -79,6 +79,10 @@
         .btn-print:hover {
             background-color: #113f75;
         }
+        .btn-print:disabled {
+            background-color: #7a8a9a;
+            cursor: wait;
+        }
         .rooms-section {
             flex: 1 1 100%;
         }
@@ -663,19 +667,19 @@
                 font-size: 11.5px !important;
             }
 
-            /* Prevent awkward mid-section page breaks -- but NOT on
-               .room-block, since that's large (photos + description +
-               benefits) and forcing the whole thing to avoid splitting
-               means it jumps entirely to the next page whenever it
-               doesn't quite fit, wasting all remaining space on the
-               current page. Letting it flow naturally fills pages fully;
-               only the smaller, more self-contained benefits-box still
-               avoids a split, since a bullet list cut mid-item looks worse
-               than a room description flowing across a page boundary. */
+            /* Room blocks now stay together as a unit again (photos +
+               description no longer split mid-sentence across a page
+               break). This was previously removed because it caused large
+               blank gaps -- but after the spacing above was tightened
+               significantly, each block is now small enough that it either
+               fits the remaining page space, or leaves only a small gap
+               rather than a mostly-empty page. Worth reverting to "split
+               freely" if gaps become noticeable again on longer letters. */
             .details-section,
             .details-block,
             .benefits-box,
-            .app-promo-container {
+            .app-promo-container,
+            .room-block {
                 page-break-inside: avoid;
                 break-inside: avoid;
             }
@@ -1243,7 +1247,37 @@
             return (str || "").replace(/[\\/:*?"<>|]/g, "").replace(/\s+/g, " ").trim();
         }
 
-        function printWithFilename() {
+        // Waits until every <img> on the page has settled -- either loaded
+        // successfully, or failed and been swapped to its placeholder by
+        // the onerror handler, which itself then needs to finish loading
+        // too. Without this, window.print() can capture a snapshot mid-load
+        // and show blank boxes for photos that hadn't finished arriving yet
+        // (this happens more with externally-hosted photos like Google
+        // Drive, which can be slower or briefly rate-limited).
+        function waitForImages(timeoutMs = 6000) {
+            const imgs = Array.from(document.querySelectorAll("img"));
+            const start = Date.now();
+            return new Promise(resolve => {
+                function check() {
+                    const allDone = imgs.every(img => img.complete);
+                    if (allDone || Date.now() - start > timeoutMs) {
+                        resolve();
+                    } else {
+                        setTimeout(check, 100);
+                    }
+                }
+                check();
+            });
+        }
+
+        async function printWithFilename() {
+            const printBtn = document.querySelector(".btn-print");
+            const originalBtnText = printBtn.textContent;
+            printBtn.disabled = true;
+            printBtn.textContent = "Preparing photos...";
+
+            await waitForImages();
+
             const name = sanitizeForFilename(document.getElementById("inputName").value) || "Guest";
             const conf = sanitizeForFilename(document.getElementById("inputConfNo").value);
             // A literal "|" is invalid in Windows filenames and gets stripped
@@ -1259,6 +1293,8 @@
 
             const restoreTitle = () => {
                 document.title = DEFAULT_PAGE_TITLE;
+                printBtn.disabled = false;
+                printBtn.textContent = originalBtnText;
                 window.removeEventListener("afterprint", restoreTitle);
             };
             window.addEventListener("afterprint", restoreTitle);
