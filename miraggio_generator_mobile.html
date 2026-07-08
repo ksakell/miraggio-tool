@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Miraggio Offer & Confirmation Generator</title>
+
+    <!-- iOS "Add to Home Screen" support: makes this open full-screen like
+         an app, with its own icon and name, once added from Safari's
+         Share menu. No App Store submission needed. -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Miraggio">
+    <link rel="apple-touch-icon" href="data:image/png;base64,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">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .admin-panel {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            max-width: 900px;
+            margin: 0 auto 30px auto;
+        }
+        .admin-panel h2 {
+            margin-top: 0;
+            color: #0b2c52;
+            border-bottom: 2px solid #f0f2f5;
+            padding-bottom: 10px;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-group label {
+            font-size: 11px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            font-family: inherit;
+        }
+        .btn-print {
+            grid-column: span 3;
+            background-color: #0b2c52;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+            text-transform: uppercase;
+            margin-top: 10px;
+        }
+        .btn-print:hover {
+            background-color: #113f75;
+        }
+        .rooms-section {
+            grid-column: span 3;
+        }
+        .rooms-section > label {
+            font-size: 11px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: block;
+        }
+        .room-line {
+            display: grid;
+            grid-template-columns: 1.8fr 0.6fr 1fr 1fr 1fr auto;
+            gap: 8px;
+            align-items: end;
+            padding: 12px;
+            background: #f8f9fb;
+            border: 1px solid #eaeef2;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .room-line .form-group {
+            min-width: 0;
+        }
+        .room-line .form-group input,
+        .room-line .form-group select {
+            width: 100%;
+            box-sizing: border-box;
+            min-width: 0;
+        }
+        .room-line .form-group label {
+            font-size: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .btn-remove-room {
+            background-color: #d9534f;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            width: 36px;
+            height: 36px;
+            font-size: 16px;
+            cursor: pointer;
+            line-height: 1;
+        }
+        .btn-remove-room:hover {
+            background-color: #c9302c;
+        }
+        .btn-remove-room:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        .btn-add-room {
+            background-color: #ffffff;
+            color: #0b2c52;
+            border: 2px dashed #0b2c52;
+            border-radius: 4px;
+            padding: 10px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 5px;
+            text-transform: uppercase;
+        }
+        .btn-add-room:hover {
+            background-color: #f0f4f8;
+        }
+        .btn-add-room:disabled {
+            border-color: #ccc;
+            color: #aaa;
+            cursor: not-allowed;
+        }
+        .room-limit-note {
+            font-size: 11px;
+            color: #888;
+            margin-top: 6px;
+        }
+
+        /* --- LETTER TEMPLATE STYLES --- */
+        .letter-container {
+            background: #ffffff;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 50px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border-radius: 4px;
+        }
+        .letter-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .logo-placeholder {
+            font-size: 28px;
+            font-weight: 300;
+            letter-spacing: 6px;
+            color: #0b2c52;
+            margin: 0;
+        }
+        .logo-subtitle {
+            font-size: 11px;
+            letter-spacing: 3px;
+            color: #888;
+            text-transform: uppercase;
+            margin: 5px 0 0 0;
+        }
+        .stars {
+            color: #0b2c52;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+        .congrats-box {
+            text-align: center;
+            margin: 40px 0;
+        }
+        .congrats-title {
+            font-size: 22px;
+            color: #0b2c52;
+            font-weight: 600;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .congrats-sub {
+            font-size: 18px;
+            color: #c9a054;
+            margin: 0;
+            font-weight: 400;
+        }
+        .intro-text {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #444;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .panoramic-wrapper {
+            width: 100%;
+            height: 260px;
+            overflow: hidden;
+            margin-bottom: 40px;
+            border-radius: 4px;
+        }
+        .offer-prefix {
+            font-size: 16px;
+            font-weight: bold;
+            color: #0b2c52;
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 5px;
+        }
+        .club-subtitle {
+            font-size: 14px;
+            color: #c9a054;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .room-description {
+            font-size: 13px;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 25px;
+            text-align: center;
+            padding: 0 20px;
+        }
+        .room-images-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin: 25px 0;
+        }
+        .room-img-box {
+            width: 100%;
+            height: 110px;
+            background-color: #f0f2f5;
+            border-radius: 4px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .room-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .details-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+        .details-block h4 {
+            color: #0b2c52;
+            margin: 0 0 12px 0;
+            border-bottom: 1px solid #f0f2f5;
+            padding-bottom: 5px;
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+        }
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+        .detail-label {
+            color: #666;
+            font-weight: 500;
+        }
+        .detail-value {
+            color: #111;
+            font-weight: 600;
+            text-align: right;
+        }
+        .pax-line {
+            margin-bottom: 3px;
+        }
+        .pax-line:last-child {
+            margin-bottom: 0;
+        }
+        .pax-room-tag {
+            display: block;
+            color: #999;
+            font-weight: 400;
+            font-size: 10.5px;
+            margin-top: 1px;
+        }
+        .benefits-box {
+            background-color: #4b6b94;
+            color: #ffffff;
+            padding: 25px;
+            border-radius: 0px;
+            margin-top: 30px;
+        }
+        .benefits-box h4 {
+            margin: 0 0 15px 0;
+            color: #ffffff;
+            font-size: 15px;
+            text-transform: uppercase;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding-bottom: 5px;
+        }
+        .benefits-list {
+            margin: 0;
+            padding-left: 20px;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+        .benefits-list li {
+            margin-bottom: 5px;
+        }
+        .room-block {
+            margin-bottom: 10px;
+        }
+        .room-block + .room-block {
+            border-top: 1px dashed #e0e4e9;
+            padding-top: 30px;
+            margin-top: 10px;
+        }
+        .fin-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 12px;
+        }
+        .fin-table th {
+            text-align: left;
+            font-size: 10px;
+            text-transform: uppercase;
+            color: #888;
+            border-bottom: 1px solid #eee;
+            padding: 4px 4px;
+        }
+        .fin-table td {
+            padding: 6px 4px;
+            border-bottom: 1px solid #f5f5f5;
+            color: #333;
+        }
+        .fin-table td.num {
+            text-align: right;
+            white-space: nowrap;
+        }
+        .price-strikeout {
+            text-decoration: line-through;
+            color: #999 !important;
+            font-weight: 500 !important;
+        }
+        .special-total-row {
+            margin-top: 6px !important;
+        }
+        .special-total-value {
+            font-size: 19px !important;
+            font-weight: 800 !important;
+            color: #2e7d32 !important;
+        }
+
+        .app-promo-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            border: 1px solid #eaeef2;
+            padding: 20px;
+            border-radius: 6px;
+            margin-top: 35px;
+            background-color: #fafbfc;
+        }
+        .app-text-block {
+            font-size: 24px;
+            color: #4b6b94;
+            font-weight: 300;
+            text-align: center;
+            line-height: 1.4;
+        }
+        .app-text-block strong {
+            display: block;
+            font-weight: 600;
+            color: #0b2c52;
+        }
+        .qr-placeholder {
+            width: 90px;
+            height: 90px;
+            background-color: #4b6b94;
+            padding: 5px;
+        }
+        .qr-placeholder img {
+            width: 100%;
+            height: 100%;
+            background-color: white;
+        }
+        
+        /* --- PRINT MEDIA RULES --- */
+        /* --- MOBILE / PHONE LAYOUT --- */
+        @media screen and (max-width: 700px) {
+            body {
+                padding: 10px;
+            }
+            .admin-panel {
+                padding: 14px;
+                border-radius: 6px;
+            }
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                font-size: 16px; /* prevents iOS Safari auto-zoom on focus */
+                padding: 12px;
+            }
+            .room-line {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+            .room-line .form-group:first-child {
+                grid-column: 1 / -1; /* room type select gets full width */
+            }
+            .btn-remove-room {
+                grid-column: 1 / -1;
+                width: 100%;
+                height: 40px;
+            }
+            .btn-print {
+                grid-column: 1;
+                padding: 16px;
+                font-size: 15px;
+            }
+            .letter-container {
+                padding: 20px 16px;
+            }
+            .room-images-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .details-section {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .app-promo-container {
+                flex-direction: column;
+                gap: 12px;
+            }
+            .fin-table {
+                font-size: 11px;
+            }
+        }
+
+        @media print {
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color-adjust: exact !important;
+            }
+            body {
+                background-color: white;
+                padding: 0;
+            }
+            .admin-panel {
+                display: none !important;
+            }
+            .letter-container {
+                box-shadow: none !important;
+                padding: 0 !important;
+                max-width: 100% !important;
+            }
+            @page {
+                size: A4;
+                margin: 1.5cm;
+            }
+
+            /* Compact mode: applied automatically by JS when the
+               reservation has a single room type, since that's the
+               large majority of cases and should comfortably fit
+               two printed pages. Reservations with multiple room
+               types keep full spacing and simply run longer. */
+            .letter-container.compact-print .panoramic-wrapper {
+                height: 130px !important;
+                margin-bottom: 20px !important;
+            }
+            .letter-container.compact-print .congrats-box {
+                margin: 15px 0 !important;
+            }
+            .letter-container.compact-print .intro-text {
+                margin-bottom: 10px !important;
+                font-size: 12px !important;
+            }
+            .letter-container.compact-print .offer-prefix {
+                margin-top: 12px !important;
+                margin-bottom: 3px !important;
+                font-size: 14px !important;
+            }
+            .letter-container.compact-print .club-subtitle {
+                margin-bottom: 8px !important;
+                font-size: 12px !important;
+            }
+            .letter-container.compact-print .room-description {
+                font-size: 11.5px !important;
+                line-height: 1.4 !important;
+                margin-bottom: 12px !important;
+            }
+            .letter-container.compact-print .room-images-grid {
+                margin: 12px 0 !important;
+                gap: 6px !important;
+            }
+            .letter-container.compact-print .room-img-box {
+                height: 75px !important;
+            }
+            .letter-container.compact-print .benefits-box {
+                padding: 14px 18px !important;
+                margin-top: 12px !important;
+            }
+            .letter-container.compact-print .benefits-box h4 {
+                margin-bottom: 8px !important;
+                font-size: 13px !important;
+            }
+            .letter-container.compact-print .benefits-list {
+                font-size: 11.5px !important;
+                line-height: 1.35 !important;
+            }
+            .letter-container.compact-print .benefits-list li {
+                margin-bottom: 2px !important;
+            }
+            .letter-container.compact-print .details-section {
+                margin-top: 14px !important;
+                padding-top: 12px !important;
+                gap: 20px !important;
+            }
+            .letter-container.compact-print .detail-row {
+                margin-bottom: 4px !important;
+            }
+            .letter-container.compact-print .app-promo-container {
+                padding: 10px !important;
+                margin-top: 14px !important;
+            }
+            .letter-container.compact-print .app-promo-container .qr-placeholder {
+                width: 65px !important;
+                height: 65px !important;
+            }
+            .letter-container.compact-print .app-text-block {
+                font-size: 16px !important;
+            }
+            .letter-container.compact-print p {
+                margin: 6px 0 !important;
+                font-size: 11.5px !important;
+            }
+
+            /* Prevent awkward mid-section page breaks */
+            .details-section,
+            .details-block,
+            .room-block,
+            .benefits-box,
+            .app-promo-container {
+                page-break-inside: avoid;
+                break-inside: avoid;
+            }
+            h4 {
+                page-break-after: avoid;
+                break-after: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="admin-panel">
+        <h2>Miraggio Confirmation Generator Panel</h2>
+
+        <div class="form-grid">
+            <div class="form-group">
+                <label>Guest Name</label>
+                <input type="text" id="inputName" placeholder="Enter guest full name..." oninput="updateLetter()">
+            </div>
+            <div class="form-group">
+                <label>Confirmation No</label>
+                <input type="text" id="inputConfNo" placeholder="Enter confirmation digits..." oninput="updateLetter()">
+            </div>
+            <div class="form-group">
+                <label>Board Arrangement Option</label>
+                <select id="inputBoard" onchange="updateLetter()">
+                    <option value="Breakfast" selected>Breakfast</option>
+                    <option value="Half Board">Half Board</option>
+                    <option value="Half Board Plus">Half Board Plus</option>
+                    <option value="Full Board">Full Board</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Arrival Date (dd/mm/yyyy)</label>
+                <input type="date" id="inputArrival" lang="en-GB" onchange="autoCalculateDates()">
+            </div>
+            <div class="form-group">
+                <label>Departure Date (dd/mm/yyyy)</label>
+                <input type="date" id="inputDeparture" lang="en-GB" onchange="autoCalculateDates()">
+            </div>
+            <div class="form-group">
+                <label>Duration Parameter (Nights)</label>
+                <input type="number" id="inputNights" value="" placeholder="Nights total..." oninput="updateLetter()">
+            </div>
+
+            <div class="rooms-section">
+                <label>Rooms in this Reservation</label>
+                <div id="roomsContainer"></div>
+                <button type="button" class="btn-add-room" id="btnAddRoom" onclick="addRoom()">+ Add Room</button>
+                <div class="room-limit-note">Up to 5 room lines per reservation. Each line can be a different room type, with its own quantity, guests, and rates.</div>
+            </div>
+
+            <button class="btn-print" onclick="printWithFilename()">Print / Export to PDF</button>
+        </div>
+    </div>
+
+    <div class="letter-container">
+        <div class="letter-header">
+            <p class="logo-placeholder">MIRAGGIO</p>
+            <p class="logo-subtitle">Thermal Spa Resort</p>
+            <div class="stars">★★★★★</div>
+        </div>
+
+        <div class="congrats-box">
+            <p style="margin:0; font-size:15px; color:#444;">Dear <span id="lblDearTitle" style="font-weight: 600;">[Guest Name]</span>,</p>
+            <h3 class="congrats-title" style="margin-top: 10px; font-weight: bold; letter-spacing: 0.5px;">Congratulations your</h3>
+            <p class="congrats-sub" style="font-size: 24px; font-weight: bold; color: #0b2c52; margin-top: 0;">Reservation is confirmed!</p>
+        </div>
+
+        <p class="intro-text">
+            We would like to extend to you a very warm welcome.<br>
+            On behalf of our <em>Miraggio</em> team, we are delighted to have the opportunity to serve you, and share the light and warmth of hospitality that <em>Miraggio Thermal Spa Resort</em> has to offer!
+        </p>
+
+        <div class="panoramic-wrapper">
+            <img id="imgPanoramic" src="" alt="Miraggio Panoramic View" style="width:100%; height:100%; object-fit:cover;" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1540518614846-7eded433c457?w=800'">
+        </div>
+
+        <div class="offer-prefix">It is our pleasure to provide the bellow offer for:<br><span id="lblOfferPrefix" style="color:#c9a054; text-transform: none;">[No Rooms Selected]</span></div>
+
+        <div id="roomBlocksContainer"></div>
+
+        <div class="details-section">
+            <div class="details-block">
+                <h4>Guest Details</h4>
+                <div class="detail-row"><span class="detail-label">Name:</span><span class="detail-value" id="lblGuestName">-</span></div>
+                
+                <h4 style="margin-top:20px;">Reservation Details</h4>
+                <div class="detail-row"><span class="detail-label">Rooms:</span><span class="detail-value" id="lblRoomCategory">-</span></div>
+                <div class="detail-row"><span class="detail-label">Board Option:</span><span class="detail-value" id="lblBoard">-</span></div>
+                <div class="detail-row" style="align-items:flex-start;"><span class="detail-label">Persons:</span><div class="detail-value" id="lblPax" style="text-align:right;">-</div></div>
+                <div class="detail-row"><span class="detail-label">Check In:</span><span class="detail-value">15:00</span></div>
+                <div class="detail-row"><span class="detail-label">Check Out:</span><span class="detail-value">11:00</span></div>
+                <div class="detail-row"><span class="detail-label">Confirmation No:</span><span class="detail-value" id="lblConfNo" style="color:#0b2c52; font-size:14px;">-</span></div>
+            </div>
+
+            <div class="details-block">
+                <h4>Financial Summary</h4>
+                <div class="detail-row"><span class="detail-label">Arrival:</span><span class="detail-value" id="lblArrival">-</span></div>
+                <div class="detail-row"><span class="detail-label">Departure:</span><span class="detail-value" id="lblDeparture">-</span></div>
+                <div class="detail-row"><span class="detail-label">Duration:</span><span class="detail-value" id="lblNights">-</span></div>
+                <div class="detail-row" style="align-items:flex-start;"><span class="detail-label">Initial Daily Rate:</span><div class="detail-value" id="lblInitialDaily" style="text-align:right;">-</div></div>
+                <div class="detail-row"><span class="detail-label">Total Initial Cost:</span><span class="detail-value price-strikeout" id="lblTotalInitial">-</span></div>
+                <table class="fin-table">
+                    <thead>
+                        <tr><th>Room</th><th>Qty</th><th style="text-align:right;">Rate/Night</th><th style="text-align:right;">Total</th></tr>
+                    </thead>
+                    <tbody id="finTableBody">
+                        <tr><td colspan="4" style="color:#999;">Add a room above to see pricing...</td></tr>
+                    </tbody>
+                </table>
+                <div class="detail-row special-total-row" style="border-top:1px solid #eee; padding-top:8px; margin-top:8px;"><span class="detail-label">Special Rate Total:</span><span class="detail-value special-total-value" id="lblTotalSpecial">-</span></div>
+            </div>
+        </div>
+
+        <div style="margin-top: 25px; font-size: 13px; color: #111; background-color: #fafbfc; padding: 15px; border-left: 3px solid #0b2c52;">
+            <strong>Invoice will be issued to:</strong> <span id="lblInvoiceTo">-</span>
+        </div>
+
+        <div class="app-promo-container">
+            <div style="font-size: 45px; color: #4b6b94;">📱</div>
+            <div class="app-text-block">
+                Download <strong>the App</strong>
+            </div>
+            <div class="qr-placeholder">
+                <img id="imgQr" src="data:image/png;base64,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" alt="QR Code - Download the Miraggio App">
+            </div>
+        </div>
+
+        <p style="margin-top:30px; font-size:13px; line-height:1.6; color:#444; text-align:center;">
+            To provide you with the highest form of customer service, you will receive an email at the address you provided during the reservation process, to check-in through the <em>Miraggio</em> application.
+        </p>
+        <p style="font-size:14px; font-weight:bold; text-align:center; margin:10px 0 0 0; color:#0b2c52;">The Miraggio Reservations Department</p>
+
+        <div style="margin-top:40px; font-size:11px; color:#777; border-top:1px solid #eee; padding-top:15px; line-height:1.5;">
+            <p style="margin-bottom:12px;"><strong>Greek Tourist Tax:</strong> Applicable Tax Charges from 01/01/2025: 15€ occupancy tax is to be added to the per night room and basic board rate, to be paid by the guest upon arrival. The hotel reserves the right not to accommodate the guest if they refuse to pay the tax. If government occupancy tax rates change, the prevailing tax rates at the time of the guest stay will be charged.</p>
+            <p><strong>Miraggio Thermal Spa Resort - Bank details:</strong><br>Company: MED SEA HEALTH S.A. | Address: Kanistro, Paliouri, Halkidiki, 63085 | Tel. +302374440000 | Vat Number: EL998774419 | Bank: National Bank of Greece | IBAN: GR390 1102 1000 0002 1000 133 310 | Swift: ETHNGRAA | Account Holder: Med Sea Health S.A.</p>
+        </div>
+    </div>
+
+    <script>
+        // ------------------------------------------------------------------
+        // IMAGE SOURCING CONFIGURATION
+        // ------------------------------------------------------------------
+        // MOBILE / CEO VERSION -- photos hosted on Google Drive or Dropbox
+        // ------------------------------------------------------------------
+        // This version does NOT use the office local image server, so it
+        // works anywhere with normal internet (no VPN, no PC dependency).
+        // Paste a direct image link into each slot below. A normal "share"
+        // link from Google Drive or Dropbox will NOT work as-is -- it must
+        // first be converted to a direct-image link:
+        //
+        // GOOGLE DRIVE:
+        //   1. Right-click the file -> Share -> "Anyone with the link"
+        //   2. Copy the link, it looks like:
+        //      https://drive.google.com/file/d/FILE_ID_HERE/view?usp=sharing
+        //   3. Take just the FILE_ID_HERE part and build this instead:
+        //      https://drive.google.com/thumbnail?id=FILE_ID_HERE&sz=w1000
+        //
+        // DROPBOX:
+        //   1. Share -> Copy link, it looks like:
+        //      https://www.dropbox.com/s/abc123/photo1.jpg?dl=0
+        //   2. Change "www.dropbox.com" to "dl.dropboxusercontent.com"
+        //      and remove "?dl=0" from the end:
+        //      https://dl.dropboxusercontent.com/s/abc123/photo1.jpg
+        //
+        // Fill in PANORAMIC_URL and each room's photos array below. Leave
+        // a slot as "" (empty string) if you don't have that photo yet --
+        // it will automatically fall back to a placeholder image.
+        // ------------------------------------------------------------------
+
+        const PANORAMIC_URL = "https://drive.google.com/thumbnail?id=1TyhvbEuZEKfqCfYmqrgqwhUSZhn9J-pV&sz=w1000"; // <-- paste the direct link to the header photo here
+
+        const PLACEHOLDER_IMG = "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=150";
+
+        const roomDatabase = {
+            "Superior Garden View Room": {
+                isClub: false,
+                folder: "1. Superior Garden View Room",
+                // Photos for "1. Superior Garden View Room" -- paste 4 direct image links below
+                photos: ["https://drive.google.com/thumbnail?id=178FhYZWGSibjackWGDrbhr0QXcoplpdT&sz=w1000", "https://drive.google.com/thumbnail?id=1RLtfMj5JbkMHO8iOfGxNX8_r_DHcxP59&sz=w1000", "https://drive.google.com/thumbnail?id=1a7qaelWxF619qjlegKMN_1rRHfw6aUQV&sz=w1000", "https://drive.google.com/thumbnail?id=1gWBHKpl5yCTXjqS1HVMTTifKm4tZmfam&sz=w1000"],
+                description: "Welcome to our Superior Garden View Room, where spaciousness meets comfort and coziness. With ample room spanning 34-36m2, these rooms offer a relaxed and comfortable accommodation for up to 2 adults and one child. Rejuvenate in the bathroom with a refreshing shower and complimentary toiletries, and take in the stunning views of the hotel gardens from your very own furnished balcony or veranda. Indulge in the ultimate relaxation and serenity in our Garden View Room."
+            },
+            "Deluxe Garden View Room": {
+                isClub: false,
+                folder: "2. Deluxe Garden View",
+                // Photos for "2. Deluxe Garden View" -- paste 4 direct image links below
+                photos: ["https://drive.google.com/thumbnail?id=1H7JhRGjbaemjJSOzVjtsKz2LCdwHI1HZ&sz=w1000", "https://drive.google.com/thumbnail?id=1g0U3WTTHi-5Pk1Q5M4vVkHyX05w8r7I3&sz=w1000", "https://drive.google.com/thumbnail?id=1qerB4ST-FfjYHoVsEK62pc4TuWHUGL15&sz=w1000", "https://drive.google.com/thumbnail?id=1vuRihzgeQQSO-9b5j3Ls_Pp3I153aieC&sz=w1000"],
+                description: "Experience the height of luxury in our Deluxe Garden View Room, boasting a generous 37-39m2 of space. These rooms are located on the hotel's ground floor and feature your choice of twin or double beds, complete with a shower for your ultimate relaxation. Step out onto your convenient veranda and take in the breathtaking views of the hotel gardens, immersing yourself in the serene surroundings. Escape to the Deluxe Garden View Room and discover the perfect oasis for your stay."
+            },
+            "Deluxe Side Sea View Room": {
+                isClub: false,
+                folder: "3. Deluxe Side Sea View Room",
+                // Photos for "3. Deluxe Side Sea View Room" -- paste 4 direct image links below
+                photos: ["https://drive.google.com/thumbnail?id=1M6PI1t0ZKEMUNDJvYImy6Nz49uPQrrJP&sz=w1000", "https://drive.google.com/thumbnail?id=1aSlt6-w5ScP9abSqcVNJ3OgMCHUrgH0r&sz=w1000", "https://drive.google.com/thumbnail?id=1bV-Z50S2FSLfdsEZMXe_-ImrO8fb-JhA&sz=w1000", "https://drive.google.com/thumbnail?id=1fRAHbWRhM5dPmPF8O1MQdHpWLpCoJeJ2&sz=w1000"],
+                description: "Experience pure luxury in our Deluxe Side Sea View Rooms, situated on the hotel's ground or first floor and generously spanning 37-39m2. Enjoy a restful sleep on your choice of twin or double beds, and indulge in a lavish soak in your own bathtub or shower. Take a moment to relax on your balcony or veranda, which offers a pleasant side view of the sea."
+            },
+            "Deluxe Sea View Room": {
+                isClub: false,
+                folder: "4. Deluxe Sea View Room",
+                // Photos for "4. Deluxe Sea View Room" -- paste 4 direct image links below
+                photos: ["https://drive.google.com/thumbnail?id=15a_1A1uuPjfYKTGg8GTWepMELJvwnst6&sz=w1000", "https://drive.google.com/thumbnail?id=1fEkjXPiprlyyOwpiJZn0cm5Pepia7jxD&sz=w1000", "https://drive.google.com/thumbnail?id=17mwD0O4i5rc8I3ixiPcYT0LgGJv_Q87u&sz=w1000", "https://drive.google.com/thumbnail?id=1Esx6SePoOMFloLdoFYB8G5qhU36Y2nyZ&sz=w1000"],
+                description: "Welcome to the epitome of luxury and beauty of our Deluxe Sea View Room. These rooms cover a generous 37-39m2 and are located on the hotel's ground or first floor. Enjoy your choice of twin or double beds, complete with a bathtub or shower for your ultimate relaxation. Step out onto your convenient balcony or veranda and take in the stunning and uninterrupted views of the sea, immersing yourself in the natural beauty that surrounds you. The Deluxe Sea View Room is the perfect escape for your stay, where luxury meets breathtaking views of the sea."
+            },
+            "Family Garden View Room": {
+                isClub: false,
+                folder: "6. Family Garden View Room",
+                // Photos for "6. Family Garden View Room" -- paste 4 direct image links below
+                photos: ["https://drive.google.com/thumbnail?id=1P0rHF1nfzVU13PvwMGfhsN435U9HyuHw&sz=w1000", "https://drive.google.com/thumbnail?id=1huC6UpZUx8t0mrJrm4z20tzC6jV0EDaH&sz=w1000", "https://drive.google.com/thumbnail?id=1nzlre9go2q19Q7ck7x3ISvP7APGZASk8&sz=w1000", "https://drive.google.com/thumbnail?id=1xojadQF9yvUzeyATIIcQoL8ff5J0IYQl&sz=w1000"],
+                description: "Welcome to our Family Garden View Room, the perfect choice for families seeking comfort and space. These open-plan family rooms offer a generous 43-45m2 of space and are located on the hotel's ground floor. Equipped with your choice of twin or double beds, complete with a bathtub or shower for your ultimate relaxation. Step out onto your convenient veranda and take in the lush views of the hotel's gardens, immersing yourself in the natural beauty that surrounds you. The Family Garden View Room is the perfect choice for families seeking a relaxing and comfortable stay in a beautiful natural setting."
+            },
+            "Deluxe Pool Front Room": {
+                isClub: false,
+                folder: "5. Deluxe Pool Front Room",
+                // Photos for "5. Deluxe Pool Front Room" -- paste 4 direct image links below
+                photos: ["https://drive.google.com/thumbnail?id=1TWfgDjwnUaycQPcC1h7hnsTNTOL6kJPY&sz=w1000", "https://drive.google.com/thumbnail?id=1qgP0cycbfyqlMdNHBCD6jWIWO--Zfb5E&sz=w1000", "https://drive.google.com/thumbnail?id=12V5RnQsKnSJjYrvsfJVMOzvQPhGzVyoK&sz=w1000", "https://drive.google.com/thumbnail?id=1IysqVLYPKjS8yhnEUXlGf1HMNMSKxVQV&sz=w1000"],
+                description: "Experience the ultimate luxury and relaxation in our Deluxe Pool Front Room, situated in a prime location right by the pool. These spacious rooms spanning 37-39m2 are equipped with your choice of twin or double beds, complete with a bathtub or shower for your ultimate relaxation. Step out onto your convenient veranda and take in the stunning views of the pool and the sea, immersing yourself in the serene surroundings. The Deluxe Pool Front Room is the perfect oasis for your stay, where luxury meets comfort and beautiful views."
+            },
+            "Club Sea View Room": {
+                isClub: true,
+                folder: "7. Club Sea View Room",
+                // Photos for "7. Club Sea View Room" -- paste 4 direct image links below
+                photos: ["https://drive.google.com/thumbnail?id=13Z2dTTdfWOrxRzAwb7P9pcVPkT_lab5d&sz=w1000", "https://drive.google.com/thumbnail?id=18B_ZN43jS7tcElSMQpXV0pD9x2L4QkEK&sz=w1000", "https://drive.google.com/thumbnail?id=1Gzf7McP_u6rec_jQO9knEuSxA_Jg5DyB&sz=w1000", "https://drive.google.com/thumbnail?id=1RiwyCt5YQfoq32xWVXLJ52d0-PNcUkz8&sz=w1000"],
+                description: "Indulge in the ultimate luxury and comfort in our Club Sea View Room, located in the hotel's exclusive west wing on the first floor. These generously-sized rooms spanning 37-39m2 offer your choice of twin or double beds, complete with a shower for your ultimate relaxation. Step out onto your convenient terrace and take in the stunning and uninterrupted views of the sea, immersing yourself in the beauty of your surroundings. The Club Sea View Room is the perfect choice for guests seeking exclusivity, luxury and breathtaking views of the sea. Guests are entitled to Miraggio Club benefits."
+            },
+            "Club Sea View Private Pool Room": {
+                isClub: true,
+                folder: "8. Club Sea View Private Pool Room",
+                // Photos for "8. Club Sea View Private Pool Room" -- paste 4 direct image links below
+                photos: ["https://drive.google.com/thumbnail?id=17DsPzhzabHwvuCfWpQOXkMaH1u-Sbvul&sz=w1000", "https://drive.google.com/thumbnail?id=1AoVCrvX47VPoPjFA0xxAAosQEfsz6VGp&sz=w1000", "https://drive.google.com/thumbnail?id=1M3Qazhy8f9r6V7OBa8wwk4C35IwDz7bm&sz=w1000", "https://drive.google.com/thumbnail?id=1x8iOK32WxvpLJq0fjovMPOQ_Dcj6CZ2-&sz=w1000"],
+                description: "Welcome to the pinnacle of luxury and relaxation, our Club Sea View Private Pool Room. These generously-sized rooms spanning 37-39m2 come equipped with twin or double beds, complete with a shower for your ultimate comfort. Step out onto your convenient terrace and take in the stunning and uninterrupted views of the sea, while enjoying a refreshing dip in your very own private pool. The Club Sea View Private Pool Room is the perfect choice for guests seeking exclusivity, luxury and ultimate relaxation while soaking up breathtaking views of the sea. Guests are entitled to Miraggio Club benefits."
+            },
+            "Suite First Floor": {
+                isClub: true,
+                folder: "10. Suite Sea View First Floor",
+                // Photos for "10. Suite Sea View First Floor" -- paste 4 direct image links below
+                photos: ["https://drive.google.com/thumbnail?id=14ei8CCWxBgen5huMERAPqxSXbCB9IOQO&sz=w1000", "https://drive.google.com/thumbnail?id=1KCT-vyW_Y-KZmFNAQ5a6tpfqvEDBSdcg&sz=w1000", "https://drive.google.com/thumbnail?id=1tYPlQxm1mU2GM9agtVD1Sb3YwXD_TAkV&sz=w1000", "https://drive.google.com/thumbnail?id=1vPTNcSEW1MM84obFl3miZ_zvxoWybNxY&sz=w1000"],
+                description: "Step into your own private haven of luxury in our Suite First Floor. These expansive 76m2 suites are located on the first floor of the East Wing and feature a spacious living room, a separate bedroom with your choice of twin or double beds, a sofa/bed for added comfort, and a bathtub and shower for ultimate relaxation. Step out onto your convenient balcony and take in the breathtaking view of the Aegean sea, where you can bask in the beauty of the surroundings. As a guest of our Suite First Floor, you will also receive Miraggio Club benefits, making your stay truly unforgettable. Book now and indulge in the ultimate luxury and comfort at our resort."
+            },
+            "Two Bedroom Suite Sea View First Floor": {
+                isClub: true,
+                folder: "10. Suite Sea View First Floor",
+                // Photos for "10. Suite Sea View First Floor" -- paste 4 direct image links below
+                photos: ["https://drive.google.com/thumbnail?id=14ei8CCWxBgen5huMERAPqxSXbCB9IOQO&sz=w1000", "https://drive.google.com/thumbnail?id=1KCT-vyW_Y-KZmFNAQ5a6tpfqvEDBSdcg&sz=w1000", "https://drive.google.com/thumbnail?id=1tYPlQxm1mU2GM9agtVD1Sb3YwXD_TAkV&sz=w1000", "https://drive.google.com/thumbnail?id=1vPTNcSEW1MM84obFl3miZ_zvxoWybNxY&sz=w1000"],
+                description: "Welcome to our luxurious Two Bedroom Suite Sea View First Floor, a truly indulgent and spacious suite spanning over 114m2. This suite offers the perfect combination of privacy and interconnected living space, with a separate Deluxe Sea View Room interconnecting with a luxurious First Floor Suite. Enjoy the stunning sea views from your convenient balcony as you relax in your spacious living room, complete with two separate bedrooms featuring your choice of twin or double beds for added comfort, as well as a sofa/bed and a bathtub and shower for ultimate relaxation. As a guest of our Two Bedroom Suite Sea View First Floor, you will also receive Miraggio Club benefits to make your stay truly unforgettable. Book now and experience the pinnacle of luxury and comfort at our resort."
+            },
+            "Suite Pool Front Ground Floor": {
+                isClub: true,
+                folder: "9. Suite Pool Front Ground Floor",
+                // Photos for "9. Suite Pool Front Ground Floor" -- paste 4 direct image links below
+                photos: ["https://drive.google.com/thumbnail?id=1MjpRl2NWB_nRUg-Aiy9muOjfQvZNm3WY&sz=w1000", "https://drive.google.com/thumbnail?id=1Oq53o0_fi9V_p2v2umX2re3RJd00VWeG&sz=w1000", "https://drive.google.com/thumbnail?id=1hEELeqZHr_hJop720tQGR9VfaK3H6TwZ&sz=w1000", "https://drive.google.com/thumbnail?id=1ibAj1V889yk2E38s2loLqTxkdKJMdYdk&sz=w1000"],
+                description: "Experience the ultimate in relaxation with our spacious Suite Pool Front Ground Floor, situated on the serene East Wing's ground floor. Featuring a luxurious living room, a separate bedroom with twin or double beds, a sofa/bed, and a modern bathtub and shower, this suite is the perfect getaway for couples or families seeking a comfortable stay. Enjoy the convenience of a veranda with a beautiful view of the sparkling sea or refreshing pool. Guests are entitled to Miraggio Club benefits."
+            },
+            "Two Bedroom Suite Pool Front Ground Floor": {
+                isClub: true,
+                folder: "9. Suite Pool Front Ground Floor",
+                // Photos for "9. Suite Pool Front Ground Floor" -- paste 4 direct image links below
+                photos: ["https://drive.google.com/thumbnail?id=1MjpRl2NWB_nRUg-Aiy9muOjfQvZNm3WY&sz=w1000", "https://drive.google.com/thumbnail?id=1Oq53o0_fi9V_p2v2umX2re3RJd00VWeG&sz=w1000", "https://drive.google.com/thumbnail?id=1hEELeqZHr_hJop720tQGR9VfaK3H6TwZ&sz=w1000", "https://drive.google.com/thumbnail?id=1ibAj1V889yk2E38s2loLqTxkdKJMdYdk&sz=w1000"],
+                description: "Two Bedroom Suite Pool Front Ground Floor is a luxurious option for guests seeking more space and privacy during their stay. This suite features a spacious living room, two separate bedrooms with twin or double beds, a sofa/bed, bathtub and shower. The convenient veranda with garden provides stunning views of the sea or pool, and the suite is located on the East Wing - ground floor. With the added benefit of an interconnecting Deluxe Pool Front Room, this suite offers a total area of 114m2 for a comfortable and indulgent stay. Guests are entitled to Miraggio Club benefits."
+            },
+            "Three Bedroom Suite Pool Front Ground Floor": {
+                isClub: true,
+                folder: "9. Suite Pool Front Ground Floor",
+                // Photos for "9. Suite Pool Front Ground Floor" -- paste 4 direct image links below
+                photos: ["https://drive.google.com/thumbnail?id=1MjpRl2NWB_nRUg-Aiy9muOjfQvZNm3WY&sz=w1000", "https://drive.google.com/thumbnail?id=1Oq53o0_fi9V_p2v2umX2re3RJd00VWeG&sz=w1000", "https://drive.google.com/thumbnail?id=1hEELeqZHr_hJop720tQGR9VfaK3H6TwZ&sz=w1000", "https://drive.google.com/thumbnail?id=1ibAj1V889yk2E38s2loLqTxkdKJMdYdk&sz=w1000"],
+                description: "A luxurious Three Bedroom Suite Poll Front Ground Floor located on the ground floor of the resort's East Wing. This spacious suite features a comfortable living room and three separate bedrooms with twin or double beds, providing ample space for large families or groups. Enjoy the convenience of a private veranda with a garden and a beautiful view of the sea or pool. The suite also comes with Miraggio Club benefits, ensuring a truly luxurious and memorable stay. With a total area of 152m2, this is the perfect option for those seeking a premium accommodation experience."
+            },
+            "Duplex Suite Private Pool Sea View": {
+                isClub: true,
+                folder: "12. Duplex Suite Private Pool",
+                // Photos for "12. Duplex Suite Private Pool" -- paste 4 direct image links below
+                photos: ["https://drive.google.com/thumbnail?id=1CjKzY_Zry4IIjRQZ9ic7DYE5ALPZ9qLY&sz=w1000", "https://drive.google.com/thumbnail?id=1KNDfBZ2BMhOCTEYihXvUqHEH9yNH3C6C&sz=w1000", "https://drive.google.com/thumbnail?id=1L57_Rug4L_tcHNBTM6BMjN_mSRYZO0XV&sz=w1000", "https://drive.google.com/thumbnail?id=1n0_LXwMM3G2sqlyhdb7J2bmLcNifkepO&sz=w1000"],
+                description: "The Duplex Suite Private Pool Sea View is a luxurious and spacious suite that exudes a sense of serenity and comfort. With a private balcony and terrace, guests can enjoy stunning views of the Toroneos Gulf and the Marina. The suite features a split-level lounge, a bedroom, and elegant decor throughout, providing an unpretentious yet luxurious atmosphere. The private pool adds an extra touch of indulgence, allowing guests to relax in complete privacy and seclusion. Guests are entitled to Miraggio Club benefits."
+            },
+            "Miraggio Suite Sea View Private Pool": {
+                isClub: true,
+                folder: "11. Miraggio Suite Sea View Private Pool",
+                // Photos for "11. Miraggio Suite Sea View Private Pool" -- paste 4 direct image links below
+                photos: ["https://drive.google.com/thumbnail?id=1B_VqE61r1iyx804q3a9IkPZPI0KBM93F&sz=w1000", "https://drive.google.com/thumbnail?id=1NWva7uMKLKw05i3ge2cjD9GN6QrjerOv&sz=w1000", "https://drive.google.com/thumbnail?id=1WlEPRUxROg4bXTRvPX-Tx0yfHM-ze_uF&sz=w1000", "https://drive.google.com/thumbnail?id=1mHIZaXFLqcX_GUbhNbxeR-xAUT6vHvaI&sz=w1000"],
+                description: "The Miraggio Suite Sea View Private Pool is a luxurious suite located in the Miraggio Club, offering a comfortable stay with a main bedroom and a separate living room. The suite comes with a private pool, and a terrace offering stunning views over the Aegean sea. Miraggio Club benefits are also included to ensure a memorable stay for guests. The suite spans over 79m2, providing ample space for guests to relax and enjoy their stay."
+            },
+            "Two Bedroom Miraggio Suite Sea View Private Pool": {
+                isClub: true,
+                folder: "11. Miraggio Suite Sea View Private Pool",
+                // Photos for "11. Miraggio Suite Sea View Private Pool" -- paste 4 direct image links below
+                photos: ["https://drive.google.com/thumbnail?id=1B_VqE61r1iyx804q3a9IkPZPI0KBM93F&sz=w1000", "https://drive.google.com/thumbnail?id=1NWva7uMKLKw05i3ge2cjD9GN6QrjerOv&sz=w1000", "https://drive.google.com/thumbnail?id=1WlEPRUxROg4bXTRvPX-Tx0yfHM-ze_uF&sz=w1000", "https://drive.google.com/thumbnail?id=1mHIZaXFLqcX_GUbhNbxeR-xAUT6vHvaI&sz=w1000"],
+                description: "The Two Bedroom Miraggio Suite Sea View Private Pool is an expansive suite consisting of two bedrooms and a separate living room, providing plenty of space for families or groups traveling together. The terrace offers stunning views of the Aegean Sea, and the private pool provides a luxurious and exclusive amenity for guests to enjoy. With 117m2 of space and Miraggio Club benefits, this suite is a perfect choice for those seeking a truly elevated and indulgent vacation experience."
+            },
+            "Miraggio Duplex Suite Private Pool": {
+                isClub: true,
+                folder: "13. Miraggio Duplex Suite Private Pool",
+                // Photos for "13. Miraggio Duplex Suite Private Pool" -- paste 4 direct image links below
+                photos: ["https://drive.google.com/thumbnail?id=1D7jF1JLY_sZulgX_bHDmpUO9DmOd-RZ8&sz=w1000", "https://drive.google.com/thumbnail?id=1bn3rwWdbJ1EQNV8VWwXaNIHECDJ64Vlr&sz=w1000", "https://drive.google.com/thumbnail?id=1b5AqxH5APrjC-2JcwVn8s1SuyC9t5oFX&sz=w1000", "https://drive.google.com/thumbnail?id=1xWkL40dKP5VRPBEtozxpWQ0uLUlphGPL&sz=w1000"],
+                description: "The Miraggio Duplex Suite with Private Pool is a luxurious accommodation option that spans over 178m2 and is located in the exclusive Miraggio Club section of the hotel. It consists of two bedrooms and a separate living room, spread across two floors that are connected by two interior staircases. The suite features convenient balconies and terrace that offer stunning views over the sea and Marina, and comes with a private pool and Miraggio Club benefits that are only available to guests staying in the Miraggio Club."
+            }
+        };
+
+        // ------------------------------------------------------------------
+        // MULTI-ROOM DATA MODEL
+        // ------------------------------------------------------------------
+        // Each entry: { id, type, qty, pax, initialRate, specialRate }
+        let rooms = [];
+        let nextRoomId = 1;
+        const MAX_ROOMS = 5;
+
+        function addRoom() {
+            if (rooms.length >= MAX_ROOMS) return;
+            rooms.push({ id: nextRoomId++, type: "", qty: 1, pax: "", initialRate: "", specialRate: "" });
+            renderRoomsAdmin();
+            updateLetter();
+        }
+
+        function removeRoom(id) {
+            rooms = rooms.filter(r => r.id !== id);
+            renderRoomsAdmin();
+            updateLetter();
+        }
+
+        function updateRoomField(id, field, value) {
+            const room = rooms.find(r => r.id === id);
+            if (!room) return;
+            room[field] = value;
+            updateLetter();
+        }
+
+        function buildRoomTypeOptionsHtml(selectedType) {
+            let html = `<option value="" ${!selectedType ? "selected" : ""} disabled>Select room type...</option>`;
+            for (const typeName of Object.keys(roomDatabase)) {
+                const sel = typeName === selectedType ? "selected" : "";
+                html += `<option value="${typeName}" ${sel}>${typeName}</option>`;
+            }
+            return html;
+        }
+
+        function renderRoomsAdmin() {
+            const container = document.getElementById("roomsContainer");
+            container.innerHTML = "";
+
+            rooms.forEach((room, index) => {
+                const row = document.createElement("div");
+                row.className = "room-line";
+                row.innerHTML = `
+                    <div class="form-group">
+                        <label>Room Type ${index + 1}</label>
+                        <select onchange="updateRoomField(${room.id}, 'type', this.value)">
+                            ${buildRoomTypeOptionsHtml(room.type)}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Qty</label>
+                        <input type="number" min="1" value="${room.qty}" oninput="updateRoomField(${room.id}, 'qty', this.value)">
+                    </div>
+                    <div class="form-group">
+                        <label>Guests</label>
+                        <input type="text" placeholder="e.g. 2 Adults" value="${room.pax}" oninput="updateRoomField(${room.id}, 'pax', this.value)">
+                    </div>
+                    <div class="form-group">
+                        <label>Initial Rate/Night (€)</label>
+                        <input type="number" value="${room.initialRate}" oninput="updateRoomField(${room.id}, 'initialRate', this.value)">
+                    </div>
+                    <div class="form-group">
+                        <label>Special Rate/Night (€)</label>
+                        <input type="number" value="${room.specialRate}" oninput="updateRoomField(${room.id}, 'specialRate', this.value)">
+                    </div>
+                    <button type="button" class="btn-remove-room" onclick="removeRoom(${room.id})" title="Remove this room">✕</button>
+                `;
+                container.appendChild(row);
+            });
+
+            const addBtn = document.getElementById("btnAddRoom");
+            addBtn.disabled = rooms.length >= MAX_ROOMS;
+            addBtn.textContent = rooms.length >= MAX_ROOMS ? "Maximum 5 rooms reached" : "+ Add Room";
+        }
+
+        function autoCalculateDates() {
+            // Native <input type="date"> always exposes .value as ISO
+            // "YYYY-MM-DD" regardless of how it's displayed on screen, so
+            // the lang="en-GB" attribute only affects what the user sees
+            // (dd/mm/yyyy) -- this logic is unaffected either way.
+            const arrVal = document.getElementById("inputArrival").value;
+            const depVal = document.getElementById("inputDeparture").value;
+
+            if (arrVal && depVal) {
+                const date1 = new Date(arrVal);
+                const date2 = new Date(depVal);
+                const timeDiff = date2.getTime() - date1.getTime();
+                const nightCount = Math.ceil(timeDiff / (1000 * 3600 * 24));
+                
+                document.getElementById("inputNights").value = nightCount > 0 ? nightCount : 0;
+            }
+            updateLetter();
+        }
+
+        function formatDate(dateString) {
+            if(!dateString) return "-";
+            const parts = dateString.split("-");
+            return `${parts[2]}.${parts[1]}.${parts[0]}`;
+        }
+
+        function formatMoney(val) {
+            return (val || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + "\u00A0€";
+        }
+
+        // Builds the photos + description + benefits block for one distinct
+        // room type. totalQty is the summed quantity across all room lines
+        // of this same type (in case the admin added the same type twice).
+        function buildRoomBlockHtml(typeName, totalQty, roomData) {
+            const isClub = roomData.isClub || typeName.includes("Club") || typeName.includes("Suite");
+
+            let imagesHtml = "";
+            for (let i = 0; i < 4; i++) {
+                const imgUrl = (roomData.photos && roomData.photos[i]) ? roomData.photos[i] : PLACEHOLDER_IMG;
+                imagesHtml += `<div class="room-img-box"><img loading="lazy" src="${imgUrl}" onerror="this.onerror=null; this.src='${PLACEHOLDER_IMG}';"></div>`;
+            }
+
+            const benefitsHtml = isClub
+                ? `<div class="benefits-box" style="background-color:#4b6b94; color:#ffffff;">
+                        <h4>It is a Miraggio Club room and comes with the below benefits:</h4>
+                        <ul class="benefits-list">
+                            <li>A welcome compliment</li>
+                            <li>Breakfast at Eliá Restaurant</li>
+                            <li>Turndown Service</li>
+                            <li>Private Beach Area with VIP Service</li>
+                            <li>1 complimentary "Thalasso Circuit Experience"</li>
+                            <li>Luxury Miraggio gifts (beach tote, cap)</li>
+                            <li>Pillow & Mattress Menu by Coco-Mat</li>
+                            <li>Lavish bathroom amenities by Abahna</li>
+                            <li>Dedicated concierge</li>
+                        </ul>
+                   </div>`
+                : `<div class="benefits-box" style="background-color:#fafbfc; color:#333;">
+                        <h4 style="color:#0b2c52;">Standard Resort Privileges Included:</h4>
+                        <ul class="benefits-list">
+                            <li>Complimentary access to the premium fitness center</li>
+                            <li>Free high-speed Wi-Fi access footprint across the resort infrastructure</li>
+                            <li>Sunbeds and umbrella tracking access metrics at the main resort pools</li>
+                        </ul>
+                   </div>`;
+
+            return `
+                <div class="room-block">
+                    <div class="offer-prefix" style="margin-top:0;">${totalQty}x ${typeName}</div>
+                    <div class="club-subtitle">${isClub ? "Welcome to the pinnacle of luxury and relaxation, our Club rooms" : "Welcome to the standard luxury comfort layouts of Miraggio"}</div>
+                    <div class="room-description">${roomData.description}</div>
+                    <div class="room-images-grid">${imagesHtml}</div>
+                    ${benefitsHtml}
+                </div>
+            `;
+        }
+
+        function updateLetter() {
+            // Panoramic header photo, hosted on Google Drive/Dropbox (see
+            // PANORAMIC_URL config near the top of the script). Falls back
+            // to the built-in onerror handler already on the <img> tag if
+            // this hasn't been filled in yet.
+            if (PANORAMIC_URL) {
+                document.getElementById("imgPanoramic").src = PANORAMIC_URL;
+            }
+
+            const nameVal = document.getElementById("inputName").value || "[Guest Name]";
+            const confVal = document.getElementById("inputConfNo").value || "-";
+            const boardVal = document.getElementById("inputBoard").value;
+            const nights = parseInt(document.getElementById("inputNights").value) || 0;
+
+            document.getElementById("lblDearTitle").innerText = nameVal;
+            document.getElementById("lblGuestName").innerText = nameVal;
+            document.getElementById("lblInvoiceTo").innerText = nameVal;
+            document.getElementById("lblConfNo").innerText = confVal;
+            document.getElementById("lblBoard").innerText = boardVal;
+            document.getElementById("lblArrival").innerText = formatDate(document.getElementById("inputArrival").value);
+            document.getElementById("lblDeparture").innerText = formatDate(document.getElementById("inputDeparture").value);
+            document.getElementById("lblNights").innerText = nights + " nights";
+
+            const validRooms = rooms.filter(r => r.type && roomDatabase[r.type]);
+
+            // --- Header summary + Guest Details "Rooms" line ---
+            const summaryParts = validRooms.map(r => `${r.qty || 1}x ${r.type}`);
+            const summaryText = summaryParts.length ? summaryParts.join(", ") : "[No Rooms Selected]";
+            document.getElementById("lblOfferPrefix").innerText = summaryText;
+            document.getElementById("lblRoomCategory").innerText = summaryText;
+
+            // --- Persons (one line per room, tagged with its room type) ---
+            const paxRoomsWithData = validRooms.filter(r => r.pax);
+            if (paxRoomsWithData.length) {
+                document.getElementById("lblPax").innerHTML = paxRoomsWithData.map(r => {
+                    const qty = parseInt(r.qty) || 1;
+                    return `<div class="pax-line">${r.pax}<span class="pax-room-tag">${qty}x ${r.type}</span></div>`;
+                }).join("");
+            } else {
+                document.getElementById("lblPax").innerText = "-";
+            }
+
+            // --- Per-type room blocks (photos + description + benefits), one per distinct type ---
+            const typeOrder = [];
+            const typeQty = {};
+            validRooms.forEach(r => {
+                const qty = parseInt(r.qty) || 1;
+                if (!(r.type in typeQty)) {
+                    typeOrder.push(r.type);
+                    typeQty[r.type] = 0;
+                }
+                typeQty[r.type] += qty;
+            });
+
+            const blocksContainer = document.getElementById("roomBlocksContainer");
+            if (typeOrder.length === 0) {
+                blocksContainer.innerHTML = `<div class="room-description">[Add at least one room above to build the offer]</div>`;
+            } else {
+                blocksContainer.innerHTML = typeOrder
+                    .map(typeName => buildRoomBlockHtml(typeName, typeQty[typeName], roomDatabase[typeName]))
+                    .join("");
+            }
+
+            // Compact print spacing kicks in automatically for the common
+            // case of a single room type, so it reliably fits two pages.
+            // Reservations spanning multiple room types keep full spacing.
+            document.querySelector(".letter-container").classList.toggle("compact-print", typeOrder.length <= 1);
+
+            // --- Financial table (one row per room line) + grand totals ---
+            const finBody = document.getElementById("finTableBody");
+            let grandInitial = 0;
+            let grandSpecial = 0;
+
+            if (validRooms.length === 0) {
+                finBody.innerHTML = `<tr><td colspan="4" style="color:#999;">Add a room above to see pricing...</td></tr>`;
+                document.getElementById("lblInitialDaily").innerText = "-";
+            } else {
+                finBody.innerHTML = validRooms.map(r => {
+                    const qty = parseInt(r.qty) || 1;
+                    const initRate = parseFloat(r.initialRate) || 0;
+                    const specRate = parseFloat(r.specialRate) || 0;
+                    const lineInitial = qty * nights * initRate;
+                    const lineSpecial = qty * nights * specRate;
+                    grandInitial += lineInitial;
+                    grandSpecial += lineSpecial;
+                    return `<tr>
+                        <td>${r.type}</td>
+                        <td>${qty}</td>
+                        <td class="num">${formatMoney(specRate)}</td>
+                        <td class="num">${formatMoney(lineSpecial)}</td>
+                    </tr>`;
+                }).join("");
+
+                // One line per room, tagged with its type -- mirrors the Persons breakdown.
+                document.getElementById("lblInitialDaily").innerHTML = validRooms.map(r => {
+                    const qty = parseInt(r.qty) || 1;
+                    const initRate = parseFloat(r.initialRate) || 0;
+                    return `<div class="pax-line"><span class="price-strikeout">${formatMoney(initRate)} / night</span><span class="pax-room-tag">${qty}x ${r.type}</span></div>`;
+                }).join("");
+            }
+
+            document.getElementById("lblTotalInitial").innerText = formatMoney(grandInitial);
+            document.getElementById("lblTotalSpecial").innerText = formatMoney(grandSpecial);
+        }
+
+        // Standard script fallback initialization loop
+        // Chrome/Edge use the page's <title> as the suggested filename when
+        // "Save as PDF" is chosen from the print dialog. Setting it here to
+        // "Guest Name - Confirmation No" means the exported file is already
+        // named sensibly, instead of the generic page title every time.
+        const DEFAULT_PAGE_TITLE = document.title;
+
+        function sanitizeForFilename(str) {
+            return (str || "").replace(/[\\/:*?"<>|]/g, "").replace(/\s+/g, " ").trim();
+        }
+
+        function printWithFilename() {
+            const name = sanitizeForFilename(document.getElementById("inputName").value) || "Guest";
+            const conf = sanitizeForFilename(document.getElementById("inputConfNo").value);
+            // A literal "|" is invalid in Windows filenames and gets stripped
+            // by sanitizeForFilename above, so we use a visually similar but
+            // filesystem-safe fullwidth vertical bar (U+FF5C) instead.
+            const SEP = " \uFF5C ";
+
+            let filename = name;
+            if (conf) filename += SEP + conf;
+            filename += SEP + "Miraggio Thermal Spa Confirmation";
+
+            document.title = filename;
+
+            const restoreTitle = () => {
+                document.title = DEFAULT_PAGE_TITLE;
+                window.removeEventListener("afterprint", restoreTitle);
+            };
+            window.addEventListener("afterprint", restoreTitle);
+
+            window.print();
+        }
+
+        window.onload = function() {
+            if (rooms.length === 0) addRoom();
+            renderRoomsAdmin();
+            updateLetter();
+        };
+    </script>
+</body>
+</html>
