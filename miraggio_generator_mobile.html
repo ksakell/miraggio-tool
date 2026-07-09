@@ -836,7 +836,7 @@
         </p>
 
         <div class="panoramic-wrapper">
-            <img id="imgPanoramic" src="" alt="Miraggio Panoramic View" style="width:100%; height:100%; object-fit:cover; object-position: 72% 45%;" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1540518614846-7eded433c457?w=800'">
+            <img id="imgPanoramic" src="" alt="Miraggio Panoramic View" style="width:100%; height:100%; object-fit:cover; object-position: 50% 68%;" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1540518614846-7eded433c457?w=800'">
         </div>
 
         <div class="offer-prefix">It is our pleasure to provide the bellow offer for:<br><span id="lblOfferPrefix" style="color:#c9a054; text-transform: none;">[No Rooms Selected]</span></div>
@@ -1405,8 +1405,10 @@
         // deliberately inspecting the page's source/network requests could
         // bypass it. For genuine access control the repo itself would need
         // to be private (requires a paid GitHub plan for Pages).
+        //
+        // No "remember this device" behavior -- the password is required
+        // on every single page load, with nothing persisted between visits.
         const PASSWORD_HASH = "b6e2dd772c5ff97c0e30240fd52457a4de75f0dbb7d28b3eb4753293266bbd45";
-        const UNLOCK_STORAGE_KEY = "miraggio_tool_unlocked";
 
         async function sha256Hex(text) {
             const encoded = new TextEncoder().encode(text);
@@ -1429,12 +1431,6 @@
             const hash = await sha256Hex(entered);
 
             if (hash === PASSWORD_HASH) {
-                try {
-                    localStorage.setItem(UNLOCK_STORAGE_KEY, "1");
-                } catch (e) {
-                    // localStorage unavailable (e.g. private browsing) -- fine,
-                    // it'll just ask again next visit.
-                }
                 errorEl.textContent = "";
                 unlockApp();
             } else {
@@ -1454,19 +1450,7 @@
             document.getElementById("lockPasswordInput").addEventListener("keydown", function(e) {
                 if (e.key === "Enter") checkPassword();
             });
-
-            let alreadyUnlocked = false;
-            try {
-                alreadyUnlocked = localStorage.getItem(UNLOCK_STORAGE_KEY) === "1";
-            } catch (e) {
-                alreadyUnlocked = false;
-            }
-
-            if (alreadyUnlocked) {
-                unlockApp();
-            } else {
-                document.getElementById("lockPasswordInput").focus();
-            }
+            document.getElementById("lockPasswordInput").focus();
         };
     </script>
 </body>
