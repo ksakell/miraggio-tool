@@ -1087,7 +1087,7 @@
         // Builds the photos + description + benefits block for one distinct
         // room type. totalQty is the summed quantity across all room lines
         // of this same type (in case the admin added the same type twice).
-        function buildRoomBlockHtml(typeName, totalQty, roomData) {
+        function buildRoomBlockHtml(typeName, totalQty, roomData, isOnlyType) {
             const isClub = roomData.isClub || typeName.includes("Club") || typeName.includes("Suite");
 
             let imagesHtml = "";
@@ -1120,9 +1120,18 @@
                         </ul>
                    </div>`;
 
+            // When this is the only room type in the reservation, the
+            // summary line right above ("It is our pleasure to provide...")
+            // already states the room name, so repeating it here would be
+            // redundant. With multiple types, each block keeps its own
+            // heading since that's what makes the breakdown scannable.
+            const headingHtml = isOnlyType
+                ? ""
+                : `<div class="offer-prefix" style="margin-top:0;">${totalQty}x ${typeName}</div>`;
+
             return `
                 <div class="room-block">
-                    <div class="offer-prefix" style="margin-top:0;">${totalQty}x ${typeName}</div>
+                    ${headingHtml}
                     <div class="club-subtitle">${isClub ? "Welcome to the pinnacle of luxury and relaxation, our Club rooms" : "Welcome to the standard luxury comfort layouts of Miraggio"}</div>
                     <div class="room-description">${roomData.description}</div>
                     <div class="room-images-grid">${imagesHtml}</div>
@@ -1189,8 +1198,9 @@
             if (typeOrder.length === 0) {
                 blocksContainer.innerHTML = `<div class="room-description">[Add at least one room above to build the offer]</div>`;
             } else {
+                const isOnlyType = typeOrder.length === 1;
                 blocksContainer.innerHTML = typeOrder
-                    .map(typeName => buildRoomBlockHtml(typeName, typeQty[typeName], roomDatabase[typeName]))
+                    .map(typeName => buildRoomBlockHtml(typeName, typeQty[typeName], roomDatabase[typeName], isOnlyType))
                     .join("");
             }
 
