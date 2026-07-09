@@ -688,10 +688,90 @@
                 break-after: avoid;
             }
         }
+        .lock-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0b2c52, #113f75);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+        .lock-box {
+            background: #ffffff;
+            padding: 40px 35px;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            text-align: center;
+            width: 90%;
+            max-width: 320px;
+        }
+        .lock-logo {
+            font-size: 24px;
+            font-weight: 300;
+            letter-spacing: 5px;
+            color: #0b2c52;
+            margin: 0;
+        }
+        .lock-subtitle {
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: #888;
+            text-transform: uppercase;
+            margin: 5px 0 25px 0;
+        }
+        .lock-box input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+        .lock-box button {
+            width: 100%;
+            padding: 12px;
+            background-color: #0b2c52;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+        .lock-box button:hover {
+            background-color: #113f75;
+        }
+        .lock-error {
+            color: #d9534f;
+            font-size: 12px;
+            margin: 12px 0 0 0;
+            min-height: 14px;
+        }
+        .app-hidden {
+            display: none !important;
+        }
     </style>
 </head>
 <body>
 
+    <div id="lockScreen" class="lock-screen">
+        <div class="lock-box">
+            <p class="lock-logo">MIRAGGIO</p>
+            <p class="lock-subtitle">Confirmation Generator</p>
+            <input type="password" id="lockPasswordInput" placeholder="Enter password" autocomplete="off">
+            <button type="button" onclick="checkPassword()">Unlock</button>
+            <p id="lockError" class="lock-error"></p>
+        </div>
+    </div>
+
+    <div id="appContent" class="app-hidden">
     <div class="admin-panel">
         <h2>Miraggio Confirmation Generator Panel</h2>
 
@@ -819,6 +899,7 @@
             <p style="margin-bottom:12px;"><strong>Greek Tourist Tax:</strong> Applicable Tax Charges from 01/01/2025: 15€ occupancy tax is to be added to the per night room and basic board rate, to be paid by the guest upon arrival. The hotel reserves the right not to accommodate the guest if they refuse to pay the tax. If government occupancy tax rates change, the prevailing tax rates at the time of the guest stay will be charged.</p>
             <p><strong>Miraggio Thermal Spa Resort - Bank details:</strong><br>Company: MED SEA HEALTH S.A. | Address: Kanistro, Paliouri, Halkidiki, 63085 | Tel. +302374440000 | Vat Number: EL998774419 | Bank: National Bank of Greece | IBAN: GR390 1102 1000 0002 1000 133 310 | Swift: ETHNGRAA | Account Holder: Med Sea Health S.A.</p>
         </div>
+    </div>
     </div>
 
     <script>
@@ -1312,10 +1393,80 @@
             window.print();
         }
 
-        window.onload = function() {
+        // ------------------------------------------------------------------
+        // PASSWORD LOCK
+        // ------------------------------------------------------------------
+        // The password itself is never stored in the page -- only its
+        // SHA-256 hash, so a quick look at "View Page Source" doesn't just
+        // hand it over. Note this is a deterrent against casual browsing,
+        // not real security: since this is a plain static page with no
+        // server behind it, the page's full contents are still delivered
+        // to the browser regardless of the password check. Anyone
+        // deliberately inspecting the page's source/network requests could
+        // bypass it. For genuine access control the repo itself would need
+        // to be private (requires a paid GitHub plan for Pages).
+        const PASSWORD_HASH = "b6e2dd772c5ff97c0e30240fd52457a4de75f0dbb7d28b3eb4753293266bbd45";
+        const UNLOCK_STORAGE_KEY = "miraggio_tool_unlocked";
+
+        async function sha256Hex(text) {
+            const encoded = new TextEncoder().encode(text);
+            const hashBuffer = await crypto.subtle.digest("SHA-256", encoded);
+            return Array.from(new Uint8Array(hashBuffer))
+                .map(b => b.toString(16).padStart(2, "0"))
+                .join("");
+        }
+
+        function unlockApp() {
+            document.getElementById("lockScreen").style.display = "none";
+            document.getElementById("appContent").classList.remove("app-hidden");
+            initApp();
+        }
+
+        async function checkPassword() {
+            const input = document.getElementById("lockPasswordInput");
+            const errorEl = document.getElementById("lockError");
+            const entered = input.value;
+            const hash = await sha256Hex(entered);
+
+            if (hash === PASSWORD_HASH) {
+                try {
+                    localStorage.setItem(UNLOCK_STORAGE_KEY, "1");
+                } catch (e) {
+                    // localStorage unavailable (e.g. private browsing) -- fine,
+                    // it'll just ask again next visit.
+                }
+                errorEl.textContent = "";
+                unlockApp();
+            } else {
+                errorEl.textContent = "Incorrect password. Please try again.";
+                input.value = "";
+                input.focus();
+            }
+        }
+
+        function initApp() {
             if (rooms.length === 0) addRoom();
             renderRoomsAdmin();
             updateLetter();
+        }
+
+        window.onload = function() {
+            document.getElementById("lockPasswordInput").addEventListener("keydown", function(e) {
+                if (e.key === "Enter") checkPassword();
+            });
+
+            let alreadyUnlocked = false;
+            try {
+                alreadyUnlocked = localStorage.getItem(UNLOCK_STORAGE_KEY) === "1";
+            } catch (e) {
+                alreadyUnlocked = false;
+            }
+
+            if (alreadyUnlocked) {
+                unlockApp();
+            } else {
+                document.getElementById("lockPasswordInput").focus();
+            }
         };
     </script>
 </body>
